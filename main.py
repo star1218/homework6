@@ -1,68 +1,93 @@
 class Person:
-    def __init__(self,name,sername,age):
+    def __init__(self,name,surname,age):
         self.name=name
-        self.sername=sername
+        self.surname=surname
         self.age=age
-    def get_stats(self):
-        return f"{self.name} {self.sername}"
-    def get_age(self):
-        return self.age
 
-class Teacther(Person):
-    def __init__(self,name,sername,age,subject_taught):
-        super().__init__(name,sername,age)
+    def show_info(self):
+        print(f"Имя: {self.name},Фамилия: {self.surname}, Лет: {self.age} ")
+
+
+class Teacher(Person):
+    def __init__(self,name,surname,age,subject_taught):
+        super().__init__(name,surname,age)
         self.subject_taught=subject_taught
-    def fet_subject_taught(self):
-        return self.subject_taught
+    def show_info(self):
+        super().show_info()
+        print(f"Предмет:",self.subject_taught)
 
 
 class Student(Person):
-    def __init__(self,name,sername,age,subject_specialty):
-        super().__init__(name,sername,age)
+    def __init__(self,name,surname,age,course,group,subject_specialty):
+        super().__init__(name,surname,age)
+        self.course=course
+        self.group=group
         self.subject_specialty=subject_specialty
-    def get_subject_specialty(self):
-        return self.subject_specialty
+    def show_info(self):
+        super().show_info()
+        print(f"Курс: {self.course},Группа: {self.group},Специальность: {self.subject_specialty}")
 
 class Subject:
     def __init__(self,name):
         self.name=name
 
-class  University:
-    def __init__(self,name,location):
+    def show_info(self):
+        print(f"Предмет: {self.name}")
+
+
+class University:
+    def __init__(self,name,location,subject):
         self.name=name
         self.location=location
+        self.subject=subject
 
-    def get_name(self):
-        return self.name
-    def get_location(self):
-        return self.location
+    def show_info(self):
+        print(f"Название Университета: {self.name},Местоположение: {self.location}")
+        print(f"Предметы: {', '.join(self.subject)}")
 
-liter_teacther=Teacther("Tamara","Shaykina","67","Foreign Literature")
-physics_teacther=Teacther("Lilia","Byzova","38","Physics")
+class Courpus(University):
+    def __init__(self,name,speciality):
+        self.name=name
+        self.speciality=speciality
 
-student1=Student("Igor","Tkachenko","19","cybersecurity")
-student2=Student("Alyona","Byzova","19","Food Technologist")
+    def show_info(self):
+        print(f"Название корпуса: {self.name}, Специальность: {self.speciality}")
 
-liter_subject=Subject("Foreign Literature")
-physics_subject=Subject("Physics")
 
-university=University("Polytech","Shevchenko Avenue")
+university = University("Политех\t","Проспект Шевченко",["Математика,Укр,Англ"])
+university.show_info()
 
-print("Literature teacher:", liter_teacther.name, liter_teacther.sername)
-print("Age:", liter_teacther.age)
-print("Teaching subject:", liter_teacther.subject_taught)
-print("\nPhysics teacher:", physics_teacther.name, physics_teacther.sername)
-print("Age:", physics_teacther.age)
-print("Teaching subject:",physics_teacther.subject_taught)
+corpys1=Courpus("ИИБРТ","125,126,127")
+corpys1.show_info()
 
-print("\nStudent Igor:", student1.name, student1.sername)
-print("Age:", student1.age)
+corpys2=Courpus("ИГН","144,148,149")
+corpys2.show_info()
 
-print("\nAlena student:", student2.name, student2.sername)
-print("Age:", student2.age)
+virology_teacher=Teacher("Генадий\t","Шаповалов","38","Вирусология")
+print("Учитель Вирусологии:",virology_teacher )
+virology_teacher.show_info()
 
-print("\nUniversity:", university.name)
-print("Location:", university.location)
+its_teacher=Teacher("Норман\t","Бобок","42","ИТС")
+print("Учитель ИТС и их защита:",its_teacher)
+its_teacher.show_info()
+
+student1=Student("Игорь\t","Ткаченко","19","2","ИИБРТ РЗ-223","125")
+student1.show_info()
+
+student2=Student("Алёна\t","Ткаченко","19","4","ИИБРТ РУ-223","122")
+student2.show_info()
+
+number_subject=Subject("Литература")
+number_subject.show_info()
+
+number_subject1=Subject("История")
+number_subject1.show_info()
+
+
+
+
+
+
 
 
 
