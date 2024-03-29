@@ -1,11 +1,38 @@
 class Person:
     def __init__(self,name,surname,age):
-        self.name=name
-        self.surname=surname
-        self.age=age
+        self.__name=name
+        self.__surname=surname
+        self.__age=age
+
+    @property
+    def name(self):
+        return self.__name
+
+    @name.setter
+    def name(self, name):
+        if len(name) > 2:
+            self.__name = name
+
+    @property
+    def surname(self):
+        return self.__surname
+
+    @surname.setter
+    def surname(self, surname):
+        if len(surname) > 2:
+            self.__surname = surname
+
+    @property
+    def age(self):
+        return self.__age
+
+    @age.setter
+    def age(self, age):
+        if age > 18:
+            self.__age = age
 
     def show_info(self):
-        print(f"Имя: {self.name},Фамилия: {self.surname}, Лет: {self.age} ")
+        print(f"Имя: {self.__name}, Фамилия: {self.__surname}, Лет: {self.__age} ")
 
 
 class Teacher(Person):
